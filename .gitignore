@@ -1,0 +1,25 @@
+# Dependencelerin ve modüllerin yüklendiği klasör
+node_modules/
+
+# Yerel bağlantıların yaratıldığı klasör
+.idea/
+
+# VSCode ayarları
+.vscode/
+
+# Projede oluşturulan geçici dosyalar ve klasörler
+*.log
+*.pid
+*.lock
+npm-debug.log*
+
+# Kullanıcı tarafından belirlenen ortam değişkenleri dosyası
+.env
+
+# Yapılan derlemelerin ve oluşturulan dosyaların bulunduğu klasör
+/dist/
+/build/
+
+# Sistem dosyaları
+.DS_Store
+Thumbs.db
