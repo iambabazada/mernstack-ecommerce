@@ -1,0 +1,35 @@
+header {
+    background-color: rgb(236, 236, 236);
+    padding: 20px 30px;
+}
+
+.header_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.actions .search input {
+    background-color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.actions .search {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.actions .search button {
+    background-color: white;
+    padding: 5px 7px;
+    border-radius: 3px;
+}
