@@ -1,11 +1,12 @@
 header {
-    background-color: rgb(236, 236, 236);
-    padding: 20px 30px;
+    background-color: white;
+    padding: 20px 100px;
 }
 
 .header_container {
     display: flex;
     justify-content: space-between;
+    /* gap: 40px; */
 }
 
 .actions {
@@ -16,16 +17,19 @@ header {
 
 
 .actions .search input {
-    background-color: white;
+    background-color: #F0F0F0;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
+    width: 100%;
+    outline: none;
 }
 
 .actions .search {
     display: flex;
     gap: 5px;
     align-items: center;
+    width: 577px;
 }
 
 .actions .search button {

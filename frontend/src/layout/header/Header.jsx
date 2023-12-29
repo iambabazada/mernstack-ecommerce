@@ -3,6 +3,10 @@ import styles from './Header.module.css'
 import { addProducts } from '../../redux/productsSlice'
 import { useDispatch } from 'react-redux'
 
+import Logo from '@src/assets/logo.svg'
+import User from '@src/assets/user.svg'
+import Cart from '@src/assets/cart.svg'
+
 const Header = () => {
 
     const dispatch = useDispatch()
@@ -32,21 +36,47 @@ const Header = () => {
         console.log(products);
     }
 
+    const menu = [
+        {
+            url: '',
+            name: "Shop"
+        },
+        {
+            url: '',
+            name: "On Sale"
+        },
+        {
+            url: '',
+            name: "New Arrivals"
+        },
+        {
+            url: '',
+            name: "Brands"
+        },
+    ]
+
     return (
         <header>
             <div className={styles.header_container}>
                 <div className={styles.brand}>
-                    e.com
+                    <img src={Logo} alt="" />
                 </div>
+                <ul className='flex items-center gap-3 font-light '>
+                    {menu.map((link) => (
+                        <li key={link.name}>
+                            {link.name}
+                        </li>
+                    ))}
+                </ul>
                 <div className={styles.actions}>
                     <div className={styles.search}>
                         <input type="text" placeholder='search' />
-                        <button>
+                        {/* <button>
                             axtar
-                        </button>
+                        </button> */}
                     </div>
                     <div className={styles.user} onClick={handleUser}>
-                        user
+                        <img src={User} alt="" />
                     </div>
                     {user && (
                         <div className='fixed top-20 right-3 bg-slate-200 rounded w-4/6 h-auto'>
@@ -68,7 +98,7 @@ const Header = () => {
                         </div>
                     )}
                     <div className={styles.cart}>
-                        cart
+                        <img src={Cart} alt="" />
                     </div>
                 </div>
             </div>

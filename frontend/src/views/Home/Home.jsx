@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../../redux/productsSlice'
+import Card from '../../components/Card/Card'
 
 
 const Home = () => {
@@ -18,17 +19,7 @@ const Home = () => {
                     loading...
                 </div>
             ) : products?.products?.map((product, index) => (
-                <div key={index}>
-                    <h1>
-                        {product?.name}
-                    </h1>
-                    <span>
-                        {product?.price}$
-                    </span>
-                    <p>
-                        {product?.category}
-                    </p>
-                </div>
+                <Card key={index} data={product} />
             ))}
         </main>
     )
