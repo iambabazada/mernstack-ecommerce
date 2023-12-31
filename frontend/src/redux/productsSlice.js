@@ -6,9 +6,9 @@ const initialState = {
     loading: false
 }
 
-export const getProducts = createAsyncThunk('getProduct', async () => {
+export const getProducts = createAsyncThunk('getProduct', async (params) => {
     try {
-        const response = await axios.get('http://localhost:3000/products')
+        const response = await axios.get(`http://localhost:3000/products?keyword=${params.keyword}`)
         console.log(response.data.products);
         return response.data.products;
     } catch (error) {

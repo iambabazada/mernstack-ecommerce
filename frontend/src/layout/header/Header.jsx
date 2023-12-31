@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import styles from './Header.module.css'
 import { addProducts } from '../../redux/productsSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import Logo from '@src/assets/logo.svg'
 import User from '@src/assets/user.svg'
 import Cart from '@src/assets/cart.svg'
+import { keywordFilter } from '../../redux/generationSlice'
 
 const Header = () => {
 
@@ -13,7 +14,10 @@ const Header = () => {
 
     const [products, setProducts] = useState({ name: "", description: "", price: "", stock: "", category: '' })
 
+
     const [user, setUser] = useState(false)
+
+    const [keyword, setKeyword] = useState('')
 
     const handleUser = () => {
         setUser(!user)
@@ -55,6 +59,14 @@ const Header = () => {
         },
     ]
 
+    const searchChange = (e) => {
+        setKeyword(e.target.value)
+    }
+
+    const handleSearch = () => {
+        dispatch(keywordFilter(keyword))
+    }
+
     return (
         <header>
             <div className={styles.header_container}>
@@ -70,10 +82,10 @@ const Header = () => {
                 </ul>
                 <div className={styles.actions}>
                     <div className={styles.search}>
-                        <input type="text" placeholder='search' />
-                        {/* <button>
+                        <input value={keyword} type="text" onChange={searchChange} placeholder='search' />
+                        <button onClick={handleSearch}>
                             axtar
-                        </button> */}
+                        </button>
                     </div>
                     <div className={styles.user} onClick={handleUser}>
                         <img src={User} alt="" />
