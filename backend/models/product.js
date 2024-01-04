@@ -22,14 +22,14 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // images: [
-    //     {
-    //         public_id: {
-    //             type: String,
-    //             required: true
-    //         }
-    //     }
-    // ],
+    images: [
+        {
+            public_id: {
+                type: String,
+                required: true
+            }
+        }
+    ],
     // reviews: [
     //     {
     //         name: {

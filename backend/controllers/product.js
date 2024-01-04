@@ -2,7 +2,7 @@ const Product = require('../models/product.js')
 const ProductFilters = require('../utils/productFilters.js')
 
 const productAll = async (req, res) => {
-    const productFilter = new ProductFilters(Product.find(), req.query).search()
+    const productFilter = new ProductFilters(Product.find(), req.query).search().filter()
     const products = await productFilter.query;
 
     res.status(200).json({
