@@ -3,17 +3,24 @@ import axios from 'axios'
 
 const initialState = {
     products: [],
+    categorys: [],
     loading: false
 }
 
 export const getProducts = createAsyncThunk('getProduct', async (params) => {
     try {
-        const response = await axios.get(`http://localhost:3000/products?keyword=${params.keyword}`)
+        const { keyword, categories } = params || {};
+        let link = `http://localhost:3000/products?keyword=${keyword}`;
+        if (categories) {
+            link = `http://localhost:3000/products?keyword=${keyword}&category=${categories}`;
+        }
+        const response = await axios.get(link)
         console.log(response.data.products);
         return response.data.products;
     } catch (error) {
         console.log(error);
     }
+
 })
 
 export const addProducts = createAsyncThunk('addProduct', async (data) => {
@@ -24,6 +31,8 @@ export const addProducts = createAsyncThunk('addProduct', async (data) => {
         console.log(error);
     }
 })
+
+
 
 export const productsSlice = createSlice({
     name: 'products',

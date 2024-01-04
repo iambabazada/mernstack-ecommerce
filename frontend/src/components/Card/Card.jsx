@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Card = ({ data }) => {
-    const { name, description, price } = data
+    const { name, description, price, category } = data
 
     return (
         <div className='w-[200px] bg-gray-100 my-12'>
@@ -18,6 +18,9 @@ const Card = ({ data }) => {
                 <span>
                     {price}$
                 </span>
+                <p>
+                    {category}
+                </p>
             </div>
         </div>
     )

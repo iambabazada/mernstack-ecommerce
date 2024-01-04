@@ -7,6 +7,7 @@ import Logo from '@src/assets/logo.svg'
 import User from '@src/assets/user.svg'
 import Cart from '@src/assets/cart.svg'
 import { keywordFilter } from '../../redux/generationSlice'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
 
@@ -42,7 +43,7 @@ const Header = () => {
 
     const menu = [
         {
-            url: '',
+            url: '/products',
             name: "Shop"
         },
         {
@@ -75,9 +76,11 @@ const Header = () => {
                 </div>
                 <ul className='flex items-center gap-3 font-light '>
                     {menu.map((link) => (
-                        <li key={link.name}>
-                            {link.name}
-                        </li>
+                        <Link key={link.name} to={link.url}>
+                            <li >
+                                {link.name}
+                            </li>
+                        </Link>
                     ))}
                 </ul>
                 <div className={styles.actions}>
