@@ -4,9 +4,9 @@ const Card = ({ data }) => {
     const { name, description, price, category } = data
 
     return (
-        <div className='w-[200px] bg-gray-100 my-12'>
-            <div className="">
-                <img src="" className='h-48 w-full' alt="" />
+        <div className='w-[250px] my-12'>
+            <div className="bg-gray-100 rounded-md">
+                <img src="" className='h-56 w-full rounded-md' alt="" />
             </div>
             <div className="card_info">
                 <h3 className='text-xl'>
@@ -18,9 +18,6 @@ const Card = ({ data }) => {
                 <span>
                     {price}$
                 </span>
-                <p>
-                    {category}
-                </p>
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ const Products = () => {
     const dispatch = useDispatch()
     const products = useSelector(state => state.products)
 
-    const keyword = useSelector((state) => state.keyword)
+    const keyword = useSelector((state) => state.keyword.keyword)
 
     const [price, setPrice] = useState({ min: 0, max: 30000 })
 
@@ -20,12 +20,13 @@ const Products = () => {
         "bag"
     ]
 
-    const [categories, setCategories] = useState()
-    console.log(categories);
+    const [category, setCategory] = useState()
+    console.log(category);
 
     useEffect(() => {
-        dispatch(getProducts(keyword, categories))
-    }, [dispatch, keyword, categories])
+        console.log("filter", category, keyword);
+        dispatch(getProducts({ keyword, category, price }))
+    }, [dispatch, keyword, category, price])
 
 
     return (
@@ -40,7 +41,7 @@ const Products = () => {
                 </div>
                 <div className="categorys">
                     {categorys?.map((category, index) => (
-                        <div key={index} onClick={() => setCategories(category)}>
+                        <div key={index} onClick={() => setCategory(category)}>
                             {category}
                         </div>
                     ))}

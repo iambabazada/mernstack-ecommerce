@@ -7,14 +7,20 @@ const initialState = {
     loading: false
 }
 
-export const getProducts = createAsyncThunk('getProduct', async (params) => {
+export const getProducts = createAsyncThunk('getProduct', async (params = {}) => {
+    console.log("params", params);
     try {
-        const { keyword, categories } = params || {};
-        let link = `http://localhost:3000/products?keyword=${keyword}`;
-        if (categories) {
-            link = `http://localhost:3000/products?keyword=${keyword}&category=${categories}`;
-        }
-        const response = await axios.get(link)
+        const { keyword, category, price } = params;
+        const response = await axios.get(`http://localhost:3000/products`, {
+            params: {
+                keyword,
+                category,
+                price: {
+                    gte: price?.min,
+                    lte: price?.max
+                }
+            }
+        })
         console.log(response.data.products);
         return response.data.products;
     } catch (error) {
