@@ -34,7 +34,4 @@ const deleteProduct = async (req, res) => {
     })
 }
 
-
-
-
 module.exports = { productAll, detailProducts, createdProduct, deleteProduct }
