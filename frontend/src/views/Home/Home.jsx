@@ -4,6 +4,7 @@ import { getProducts } from '../../redux/productsSlice'
 import Card from '../../components/Card/Card'
 import Hero from './components/Hero/Hero'
 import NewArrival from './components/NewArrival/NewArrival'
+import Categorys from './components/Categorys/Categorys'
 
 
 const Home = () => {
@@ -25,6 +26,7 @@ const Home = () => {
             <div className='px-[100px]'>
                 <NewArrival products={products?.products} />
             </div>
+            <Categorys />
         </main>
     )
 }

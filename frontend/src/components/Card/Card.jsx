@@ -1,10 +1,15 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Card = ({ data }) => {
-    const { name, description, price, category } = data
+    const { name, description, price, category, _id } = data
+
+    const navigation = useNavigate()
+
+    console.log(_id);
 
     return (
-        <div className='w-[250px] my-12'>
+        <Link to={`product/${_id}`} className='w-[250px] my-12'>
             <div className="bg-gray-100 rounded-md">
                 <img src="" className='h-56 w-full rounded-md' alt="" />
             </div>
@@ -19,7 +24,7 @@ const Card = ({ data }) => {
                     {price}$
                 </span>
             </div>
-        </div>
+        </Link>
     )
 }
 

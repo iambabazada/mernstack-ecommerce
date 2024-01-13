@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const initialState = {
     products: [],
+    product: {},
     categorys: [],
     loading: false
 }
@@ -27,6 +28,12 @@ export const getProducts = createAsyncThunk('getProduct', async (params = {}) =>
         console.log(error);
     }
 
+})
+
+export const getProduct = createAsyncThunk('product', async (id) => {
+    const response = await axios.get(`http://localhost:3000/product/${id}`)
+    console.log(response.data.product);
+    return response.data.product
 })
 
 export const addProducts = createAsyncThunk('addProduct', async (data) => {
@@ -58,6 +65,11 @@ export const productsSlice = createSlice({
             state.loading = false
             state.products = state.products.push(action.payload)
         })
+        builder.addCase(getProduct.fulfilled, (state, action) => {
+            state.loading = false
+            state.product = action.payload
+        })
+
 
     }
 })
