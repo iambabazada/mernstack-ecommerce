@@ -5,16 +5,16 @@ const jwt = require('jsonwebtoken')
 const register = async (req, res) => {
     const { name, email, password } = req.body
 
-    const user = await User.find({ email })
+    const user = await User.findOne({ email })
 
     if (user) {
-        return res.status(500).json({ message: "Bele bir isdifadeci movcuddur" })
+        return res.status(500).json({ message: "Böyle bir kullanıcı mevcut" })
     }
 
     const passwordHash = await bcrypt.hash(password, 10)
 
     if (password.length < 6) {
-        return res.status(500).json({ message: "Sifre 6 simvoldan az ola bilmez" })
+        return res.status(500).json({ message: "Şifre 6 karakterden az olamaz" })
     }
 
     const newUser = await User.create({ name, email, password: passwordHash })
@@ -23,7 +23,7 @@ const register = async (req, res) => {
 
     const cookieOptions = {
         httpOnly: true,
-        expires: new Date.now() + 5 * 24 * 60 * 60 * 1000
+        expires: new Date() + 5 * 24 * 60 * 60 * 1000
     }
 
     res.status(201).cookie("token", token, cookieOptions).json({
@@ -32,36 +32,32 @@ const register = async (req, res) => {
     })
 }
 
-
 const login = async (req, res) => {
     const { email, password } = req.body
 
     const user = await User.findOne({ email })
 
     if (!user) {
-        return res.status(500).sjon({ message: "bele bir isdifadeci qeydiyyatdan kecmeyib" })
+        return res.status(500).json({ message: "Böyle bir kullanıcı kayıtlı değil" })
     }
 
-    const comparePassword = bcrypt.compare(password, user.password)
+    const comparePassword = await bcrypt.compare(password, user.password)
 
     if (!comparePassword) {
-        return res.status(500).json({ message: "Sifre yalnisdir" })
+        return res.status(500).json({ message: "Şifre yanlış" })
     }
 
     const token = await jwt.sign({ id: user._id }, "SECRETTOKEN", { expiresIn: '1h' })
 
     const cookieOptions = {
         httpOnly: true,
-        expires: new Date.now() + 5 * 24 * 60 * 60 * 1000
+        expires: new Date() + 5 * 24 * 60 * 60 * 1000
     }
 
     res.status(200).cookie("token", token, cookieOptions).json({
         user,
         token
     })
-
-
 }
-
 
 module.exports = { login, register }

@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className='flex justify-between py-4 px-[100px]'>
             <div>
-                Shop.co © 2000-2024, All Rights Reserved
+                Shop.co © 2000-2024, All Rights Reservedd
             </div>
             <div>
                 <img src={Brand} alt="" />
